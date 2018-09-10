@@ -54,6 +54,27 @@ class UpdateSubscriptionRequest extends AbstractRequest
     }
 
     /**
+     * Get the billing_cycle_anchor
+     *
+     * @return string
+     */
+    public function getAnchor()
+    {
+        return $this->getParameter('anchor');
+    }
+
+    /**
+     * Set the billing_cycle_anchor
+     *
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest|UpdateSubscriptionRequest
+     */
+    public function setAnchor($value)
+    {
+        return $this->setParameter('anchor', $value);
+    }
+
+    /**
      * Get the subscription reference
      *
      * @return string
@@ -81,6 +102,10 @@ class UpdateSubscriptionRequest extends AbstractRequest
         $data = array(
             'plan' => $this->getPlan()
         );
+
+        if ($this->parameters->has('anchor')) {
+            $data['billing_cycle_anchor'] => $this->getAnchor()
+        }
 
         if ($this->parameters->has('tax_percent')) {
             $data['tax_percent'] = (float)$this->getParameter('tax_percent');
