@@ -104,7 +104,7 @@ class UpdateSubscriptionRequest extends AbstractRequest
         );
 
         if ($this->parameters->has('anchor')) {
-            $data['billing_cycle_anchor'] => $this->getAnchor()
+            $data['billing_cycle_anchor'] = $this->getAnchor();
         }
 
         if ($this->parameters->has('tax_percent')) {
