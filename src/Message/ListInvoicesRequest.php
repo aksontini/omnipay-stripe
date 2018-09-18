@@ -20,11 +20,20 @@ class ListInvoicesRequest extends AbstractRequest
         return $data;
     }
 
+    public function getLimit()
+    {
+        if (this->parameters->has('limit'))
+            return $this->getParameter('limit');
+        else 
+            return 10;
+    }  
+
     public function getEndpoint()
     {
         $endpoint = $this->endpoint.'/invoices';
+        if ($limit = $this->getParameter('limit'))
         if ($customerReference = $this->getCustomerReference()) {
-            return $endpoint . '?customer=' . $customerReference;
+            return $endpoint . '?limit=' .$this->getLimit() .'&customer=' . $customerReference;
         }
 
         return $endpoint;
