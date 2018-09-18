@@ -25,7 +25,7 @@ class ListInvoicesRequest extends AbstractRequest
         if ($this->parameters->has('limit'))
             return $this->getParameter('limit');
         else 
-            return 10;
+            return 100;
     }  
 
     public function getEndpoint()
